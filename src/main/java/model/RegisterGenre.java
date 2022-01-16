@@ -22,4 +22,13 @@ public class RegisterGenre {
     public String getGenreDescription() {
         return genreDescription;
     }
+
+    @Override
+    public String toString() {
+        return "RegisterGenre{" +
+                "genreId=" + genreId +
+                ", genreName='" + genreName + '\'' +
+                ", genreDescription='" + genreDescription + '\'' +
+                '}';
+    }
 }

@@ -1,6 +1,8 @@
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import model.Author;
 import model.RegisterGenre;
+import model.ResponseGenre;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.google.gson.Gson;
@@ -55,5 +57,42 @@ public class WSTest {
 
     }
 
+
+    @Test
+    public void testRestAssuredDeleteGenre(){
+        Specification.installSpecification(Specification.requestSpec("http://localhost:8080/api/library/genre"),Specification.responseSpec204());
+
+        int status = given().delete("/4").then().log().all().extract().statusCode();
+        Assert.assertEquals(status,204);
+
+    }
+
+    @Test
+    public void testRestAssuredGetGenre(){
+        Specification.installSpecification(Specification.requestSpec("http://localhost:8080/"), Specification.responseSpec200());
+        List<RegisterGenre> authors = given()
+                .when()
+                .get("api/library/genres")
+                .then()
+                .log()
+                .all()
+                .extract().body().jsonPath().getList("$",RegisterGenre.class);
+
+        authors.forEach(System.out::println);
+    }
+
+    @Test
+    public void testRestAssuredGetGenreOfAuthor(){
+        Specification.installSpecification(Specification.requestSpec("http://localhost:8080/"), Specification.responseSpec200());
+        List<ResponseGenre> authors = given()
+                .when()
+                .get("api/library/author/62/genres")
+                .then()
+                .log()
+                .all()
+                .extract().body().jsonPath().getList("$",ResponseGenre.class);
+
+        authors.forEach(System.out::println);
+    }
 
 }
