@@ -32,6 +32,12 @@ public class Specification {
                 .build();
     }
 
+    public static ResponseSpecification responseSpec409(){
+        return new ResponseSpecBuilder()
+                .expectStatusCode(409)
+                .build();
+    }
+
     public static ResponseSpecification responseSpec204(){
         return new ResponseSpecBuilder()
                 .expectStatusCode(204)
