@@ -1,9 +1,9 @@
 package model;
 public class Author {
 
-    private long authorId;
+    private final long authorId;
 
-    private Name authorName;
+    private final Name authorName;
 
 
     public static class Name{
@@ -66,13 +66,7 @@ public class Author {
         this.authorDescription = authorDescription;
     }
 
-    public Author(long authorId, String first, String second, String nationality, String date, String country, String city, String authorDescription) {
-        this.authorId = authorId;
-        this.authorName = new Name(first, second);
-        this.nationality = nationality;
-        this.birth = new Birth( date,  country,  city);
-        this.authorDescription = authorDescription;
-    }
+
 
     public long getAuthorId() {
         return authorId;
